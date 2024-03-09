@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+
+.container img {
+  /* Adjust as needed */
+  width: 100%;
+  height: auto;
+}
+
+.container .form-container {
+  margin: auto;
+}

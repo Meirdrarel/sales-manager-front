@@ -36,7 +36,7 @@ export class AuthService {
     }).pipe(
       tap((response) => {
         this.accessToken = response.access_token;
-        this.localStorage.setData(refreshTokenKey, response.refresh_token)
+        this.localStorage.setItem(refreshTokenKey, response.refresh_token)
       })
     );
   }
@@ -46,15 +46,15 @@ export class AuthService {
   }
 
   isLogged() {
-    return this.accessToken !== '' || !this.localStorage.getData(refreshTokenKey);
+    return this.accessToken !== '' || !!this.localStorage.getItem(refreshTokenKey);
   }
 
   refreshToken() {
-    const refreshToken = this.localStorage.getData(refreshTokenKey)
+    const refreshToken = this.localStorage.getItem(refreshTokenKey)
     if (refreshToken) return this.apiEndpoint.refreshToken(refreshToken)
       .pipe(map((response) => {
         this.accessToken = response.access_token;
-        this.localStorage.setData(refreshTokenKey, response.refresh_token);
+        this.localStorage.setItem(refreshTokenKey, response.refresh_token);
         return this.accessToken;
       }));
     else throw Error('No refresh token found');

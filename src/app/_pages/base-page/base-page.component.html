@@ -1,0 +1,12 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" opened="true" class="sidenav">
+    <mat-list>
+      <button mat-list-item class="sidenav-item">Clients</button>
+      <button mat-list-item class="sidenav-item">Orders</button>
+      <button mat-list-item class="sidenav-item">Invoices</button>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
