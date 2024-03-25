@@ -1,0 +1,8 @@
+@for (client of clientStore.entities(); track client.corporateName) {
+  <div>
+    <div>
+      <span>Raison sociale : </span>
+      <span>{{ client.corporateName }}</span>
+    </div>
+  </div>
+}

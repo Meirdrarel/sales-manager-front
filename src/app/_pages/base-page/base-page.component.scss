@@ -1,12 +1,35 @@
+@use '@angular/material' as mat;
+
+//@import 'src/_palette.scss';
+
+
+.sidenav-header {
+  height: 64px;
+  //display: flex;
+  //align-items: center;
+  padding: 20px 20px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
 .sidenav-container {
   height: 100%;
+}
+
+.sidenav-login {
+  height: 20px;
+  padding: 5px;
 }
 
 .sidenav {
   width: 200px;
 }
 
-.sidenav-item {
-
+.app-logo {
+  width: 100%;
+  height: 40px;
+  //background-color: mat.get-color-from-palette($my-palette, 500);
 }
 
+.active-link {
+  background-color: #f0f0f0;
+}

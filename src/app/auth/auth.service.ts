@@ -2,7 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { LocalStorageService } from "../services/local-storage.service";
 import { ApiEndpointService } from "../network/endpoints/api-endpoint.service";
-import { map, tap } from "rxjs";
+import { map, switchMap, tap } from "rxjs";
+import { Router } from "@angular/router";
 
 export const refreshTokenKey = 'refresh_token';
 
@@ -15,7 +16,9 @@ export class AuthService {
   protected accessToken: string = '';
 
   constructor(protected localStorage: LocalStorageService,
-              protected apiEndpoint: ApiEndpointService) {
+              protected apiEndpoint: ApiEndpointService,
+              protected router:Router
+  ) {
   }
 
   getAccessToken() {
@@ -42,7 +45,11 @@ export class AuthService {
   }
 
   logout() {
-    return this.apiEndpoint.logout(this.accessToken);
+    this.apiEndpoint.logout(this.accessToken).subscribe(() => {
+      this.accessToken = '';
+      this.localStorage.removeItem(refreshTokenKey);
+      this.router.navigate(['/login'], {}).catch((error) => console.error(error));
+    });
   }
 
   isLogged() {

@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { AuthService } from "../../auth/auth.service";
 import { CommonModule } from "@angular/common";
@@ -18,7 +18,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     MatFormFieldModule
   ],
   templateUrl: 'login.component.html',
-  styleUrl: 'login.component.scss'
+  styleUrl: 'login.component.scss',
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class LoginComponent {
 

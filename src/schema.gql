@@ -1,0 +1,108 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""Client"""
+type Client {
+  corporateName: String!
+  id: String!
+}
+
+input ClientInput {
+  corporateName: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  createClient(newClient: ClientInput!): Client!
+  createSalesInvoice(newInvoice: NewSalesInvoiceInput!): SalesInvoice!
+  createSalesOrder(newSalesOrder: NewSalesOrderInput!): SalesOrder!
+  updateClient(clientId: String!, updateClient: ClientInput!): Client!
+}
+
+input NewSalesInvoiceInput {
+  clientId: String!
+  date: DateTime!
+  lines: [NewSalesInvoiceLineInput!]!
+  number: String!
+  reference: String
+}
+
+input NewSalesInvoiceLineInput {
+  articleDesignation: String!
+  lineNumber: Float!
+  priceExclTax: Float!
+  quantity: Float!
+  salesOrderLineId: String
+  taxes: Float!
+}
+
+input NewSalesOrderInput {
+  clientId: String!
+  date: DateTime!
+  lines: [NewSalesOrderLineInput!]!
+  number: String!
+  reference: String
+}
+
+input NewSalesOrderLineInput {
+  articleDesignation: String!
+  lineNumber: Int!
+  quantity: Float!
+}
+
+type Query {
+  getAllClients: [Client!]!
+  getAllSalesInvoices: [SalesInvoice!]!
+  getAllSalesOrders: [SalesOrder!]!
+  getMe: User!
+  getSalesOrderById(number: String!): SalesOrder!
+}
+
+"""Sales Invoices"""
+type SalesInvoice {
+  client: Client!
+  date: DateTime!
+  id: String!
+  lines: [SalesInvoiceLine!]!
+  number: String!
+  reference: String
+}
+
+"""Sales Invoices lines"""
+type SalesInvoiceLine {
+  articleDesignation: String!
+  id: String!
+  lineNumber: Int!
+  priceExclTax: Float!
+  quantity: Float!
+  salesOrderLineId: String
+  taxes: Float!
+}
+
+"""Sales Order"""
+type SalesOrder {
+  client: Client!
+  id: String!
+  lines: [SalesOrderLine!]!
+  number: String!
+  reference: String!
+}
+
+"""Sales Order lines"""
+type SalesOrderLine {
+  articleDesignation: String!
+  id: String!
+  lineNumber: Int!
+  quantity: Float!
+  saleOrderId: String!
+}
+
+type User {
+  email: String!
+  id: String!
+}

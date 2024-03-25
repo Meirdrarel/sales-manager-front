@@ -1,10 +1,19 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="side" opened="true" class="sidenav">
-    <mat-list>
-      <button mat-list-item class="sidenav-item">Clients</button>
-      <button mat-list-item class="sidenav-item">Orders</button>
-      <button mat-list-item class="sidenav-item">Invoices</button>
-    </mat-list>
+    <div class="sidenav-header">
+      <div class=".app-logo">Mon app</div>
+      <div class="sidenav-login">
+        <button mat-button [matMenuTriggerFor]="menu">Bonjour xxx</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="logout()">Se déconnecter</button>
+        </mat-menu>
+      </div>
+    </div>
+    <mat-nav-list aria-label="Main navigation">
+      <a mat-list-item [routerLink]="['clients']" [ngClass]="{'active-link': isActive('clients')}" aria-label=" client tab">Clients</a>
+      <a mat-list-item [routerLink]="['orders']" [ngClass]="{'active-link': isActive('orders')}" aria-label="orders tab">Commandes</a>
+      <a mat-list-item [routerLink]="['invoices']" [ngClass]="{'active-link': isActive('invoices')}" aria-label="invoices tab">Factures</a>
+    </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <router-outlet></router-outlet>
